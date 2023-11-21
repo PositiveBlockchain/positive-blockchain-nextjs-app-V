@@ -8,7 +8,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import Search from "@mui/icons-material/Search";
 import { useController } from "./useController";
 import { withController } from "@/lib/withContoller";
-import { Button, Dialog, Typography, useMediaQuery } from "@mui/material";
+import { Button, Dialog, Typography, useMediaQuery, Divider } from "@mui/material";
 import Link from "next/link";
 import cx from "classnames";
 import styles from "./styles.module.scss";
@@ -34,7 +34,7 @@ function ProjectPageTemplate(props: ReturnType<typeof useController>) {
       <div className="prose max-w-none max-w-7xl mx-auto sm:p-10 px-5 w-full h-full mt-5">
         <div className="flex flex-col sm:flex-row gap-5 justify-between items-center content-center mb-10">
           <Typography variant="h1" className="mb-0 font-semibold">
-            Project Directory
+            Web3 Impact Database
           </Typography>
           <Link href="/forms/request-data-snapshot" className="no-underline">
             <Button
@@ -50,19 +50,9 @@ function ProjectPageTemplate(props: ReturnType<typeof useController>) {
             </Button>
           </Link>
         </div>
-        <div className="flex justify-center w-full flex-col items-center">
-          <div className="m-auto border rounded p-2">
-            <Search>
-              <SearchIcon />
-            </Search>
-            <InputBase
-              className="w-72 text-sm"
-              placeholder="Search for projects"
-              onChange={handleSearch}
-            />
-          </div>
+        <Divider className="hidden md:flex my-8" />
+        <div className="sm:hidden flex justify-center flex-col w-255">
           <Button
-            className="sm:hidden"
             aria-label="Show Filters"
             onClick={() => toggleFilters(true)}
           >
@@ -76,6 +66,16 @@ function ProjectPageTemplate(props: ReturnType<typeof useController>) {
               ["hidden"]: !showFilters,
             })}
           >
+            <div className="border rounded p-2 mb-4">
+              <Search>
+                <SearchIcon />
+              </Search>
+              <InputBase
+                className="text-sm"
+                placeholder="Search for projects"
+                onChange={handleSearch}
+              />
+            </div>
             {/*
               NB: The two ProjectFilters maintain their own state independently, as they
               use internal forms that are not managed by React.
